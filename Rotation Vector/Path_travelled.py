@@ -59,9 +59,29 @@ if(len(Output[i-1]) > 0):
     a=set()
     b=[]
     cnt=0;
+    start=0;
+    end=0;
+    nstart=0;
+    nend=0;
     print plot
     for i in plot:
         values=i.split(' ');
+        if(cnt==0):
+            start=values[0]
+            values[0]=values[0]+' Start'
+            nstart=values[0]
+        if(cnt==len(plot)-1):
+            end=values[1];
+            values[1]=values[1]+' End'
+            nend=values[1];
+        if(start==values[0]):
+            values[0]=nstart
+        if(start==values[1]):
+            values[1]=nstart
+        if(end==values[0]):
+            values[0]=nend
+        if(end==values[1]):
+            values[1]=nend
         a.add(values[0])
         a.add(values[1])
         cnt+=1
@@ -70,6 +90,14 @@ if(len(Output[i-1]) > 0):
         dot.node(i,i);
     for i in plot:
         values=i.split(' ');
+        if(start==values[0]):
+            values[0]=nstart
+        if(start==values[1]):
+            values[1]=nstart
+        if(end==values[0]):
+            values[0]=nend
+        if(end==values[1]):
+            values[1]=nend
         dot.edge(values[0], values[1], constraint='false')
     print(dot.source)
     dot.render('path.gv', view=True)
