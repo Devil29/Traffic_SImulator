@@ -9,9 +9,9 @@ previous_angle=0
 count=1
 path_angle=[]
 debug=[]
-buff=100
+buff=1000
 ran=10
-ang=5
+ang=20
 data=f.read().split()
 path_angle.append(data[0])
 debug.append(0)
