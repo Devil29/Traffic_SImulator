@@ -7,7 +7,9 @@
  
 // array for JSON response
 $response = array();
-$myfile = fopen("testfile.txt", "a");
+$File_Data=$_POST['DATA'];
+$File_Name= explode("\n", $File_Data);
+$myfile = fopen($File_Name[0], "a");
 fwrite($myfile, $_POST['DATA']);
 
 if (isset($_POST['DATA'])) {
