@@ -1,0 +1,14 @@
+Size of BUFFER   200
+Average of this number   10
+Max angle Difference  10
+4
+
+
+
+109.96095
+-2.29568
+-37.92057
+1.15989
+
+
+109.96095 -2.29568 -37.92057 1.15989
