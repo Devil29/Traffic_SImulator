@@ -1,5 +1,9 @@
 from math import *
 from collections import defaultdict
+from graphviz import Digraph
+import sys
+sys.path
+
 
 
 Number_of_nodes=12
@@ -50,6 +54,26 @@ for line in f:
         break;
     i+=1;
 print "Path is =>  ",Output[i-1]
+if(len(Output[i-1]) > 0):
+    plot=Output[i-1][0].split(':')
+    a=set()
+    b=[]
+    cnt=0;
+    print plot
+    for i in plot:
+        values=i.split(' ');
+        a.add(values[0])
+        a.add(values[1])
+        cnt+=1
+    dot = Digraph(comment='Path From  source to Destination')
+    for i in a:
+        dot.node(i,i);
+    for i in plot:
+        values=i.split(' ');
+        dot.edge(values[0], values[1], constraint='false')
+    print(dot.source)
+    dot.render('path.gv', view=True)
+    'path.gv.pdf'
     
     
         
