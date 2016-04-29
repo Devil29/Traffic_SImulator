@@ -18,6 +18,7 @@ for line in f:
 
 f=open('road_angles_turnings.txt','r')
 i=0
+error_range=3
 nodes=0
 first_node=0
 second_node=0
@@ -27,25 +28,28 @@ previous_second_node=0
 for line in f:
     if(len(line)<2):
         break;
-    turning=int(float(line))
+    turn=int(float(line))
     if(i==0):
-        Output[i]=Matrix[turning]
+        Output[i]=Matrix[turn]
     else:
-        for edge in Matrix[turning]:
-            nodes=edge.split(' ');
-            first_node=nodes[-2];
-            second_node=nodes[-1];
-            for previous_edge in Output[i-1]:
-                previous_nodes=previous_edge.split(' ');
-                previous_first_node=previous_nodes[-2];
-                previous_second_node=previous_nodes[-1];
-                if(first_node==previous_second_node):
-                    Output[i].append(previous_edge+','+edge);
+        for ii in range(0,2*error_range+1):
+            turning=turn-error_range+ii
+            print turning
+            for edge in Matrix[turning]:
+                nodes=edge.split(' ');
+                first_node=nodes[-2];
+                second_node=nodes[-1];
+                for previous_edge in Output[i-1]:
+                    previous_nodes=previous_edge.split(' ');
+                    previous_first_node=previous_nodes[-2];
+                    previous_second_node=previous_nodes[-1];
+                    if(first_node==previous_second_node):
+                        Output[i].append(previous_edge+':'+edge);
     if(Output[i] is None):
         print "No such path"
         break;
     i+=1;
-print Output[i-1]
+print "Path is =>  ",Output[i-1]
     
     
         
